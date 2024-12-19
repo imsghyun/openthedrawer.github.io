@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONGRATS</title>
+    <style>
+ 
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; 
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            font-family: 'Roboto', sans-serif;
+            background: url('img/PAPERBG.png') no-repeat center center; 
+            background-size: cover;
+            flex-direction: column; 
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Special Elite', cursive; 
+            font-size: 80px;
+            color: #6c4f3d;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            position: absolute; 
+            top: 100px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 150px; 
+        }
+
+        .cap {
+            font-size: 200px;
+            position: relative;
+            transition: transform 1s ease-in-out;
+            margin-top: 150px;
+            margin-bottom: 10px;
+        }
+
+        .redirect-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background-color: #f5f5f5;
+            border: 2px solid #6b4f2b;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'Georgia', serif;
+            color: #6b4f2b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+      
+        .redirect-button:hover {
+            background-color: #6b4f2b;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #throwCap {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #6c4f3d;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #throwCap:hover {
+            background-color: #f1e3d8;
+            color: #6c4f3d;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #throwCap:focus {
+            outline: none;
+        }
+
+        .blink-text {
+            font-size: 18px;
+            color: #6c4f3d;
+            margin-top: 20px;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <button class="redirect-button button" onclick="window.location.href='index.html'">Go to Index</button>
+    <h1>CONGRATS!</h1>
+    <div class="container">
+        <div class="cap" id="cap">🎓</div>
+        <button id="throwCap" class="button">모자 던지기!</button>
+
+     
+        <div class="blink-text" id="blink-text">스페이스바를 누르세요</div>
+    </div>
+
+    <script>
+   
+        function throwCap() {
+            const cap = document.getElementById('cap');
+
+            cap.style.transform = 'translateY(-100px) rotate(360deg)';
+
+            setTimeout(() => {
+                cap.style.transform = 'translateY(0) rotate(0deg)';
+            }, 1000);
+        }
+
+       
+        document.getElementById('throwCap').addEventListener('click', throwCap);
+
+     
+        document.addEventListener('keydown', function(event) {
+            if (event.key === ' ' || event.keyCode === 32) { 
+                throwCap();
+            }
+        });
+    </script>
+</body>
+</html>

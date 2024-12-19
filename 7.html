@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARD FLIP</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f9f1e5; 
+            background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
+            color: #4e4e4e; 
+            text-align: center; 
+        }
+
+         .redirect-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background-color: #f5f5f5;
+            border: 2px solid #6b4f2b;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'Georgia', serif;
+            color: #6b4f2b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .redirect-button:hover {
+            background-color: #6b4f2b;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            gap: 20px; 
+            width: 80%;
+            max-width: 1500px;
+            margin-top: 300px;
+        }
+
+        li {
+            display: flex;
+            justify-content: center;
+        }
+
+        .flip-wrap {
+            perspective: 1000px;
+        }
+
+        .flip {
+            position: relative;
+            width: 318px; 
+            height: 318px;
+            transition: all 0.7s ease-in-out;
+            transform-style: preserve-3d;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+        }
+
+        .flip-wrap:hover .flip {
+            transform: rotateY(180deg);
+        }
+
+        .flip > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-size: 2rem;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background: url('img/card.png') no-repeat center/cover;
+            background-color: #f2c2a9; 
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: bold;
+            background-size: cover;
+        }
+
+        .back1 {
+            background: url('img/card1.png') no-repeat center/cover;
+            transform: rotateY(180deg);
+            background-color: #d7b1a1; 
+        }
+
+        .back2 {
+            background: url('img/card2.png') no-repeat center/cover;
+            transform: rotateY(180deg);
+            background-color: #bfa68f; 
+        }
+
+        .back3 {
+            background: url('img/card3.png') no-repeat center/cover;
+            transform: rotateY(180deg);
+            background-color: #e1bfa1; 
+        }
+
+        .back4 {
+            background: url('img/card4.png') no-repeat center/cover;
+            transform: rotateY(180deg);
+            background-color: #d5a27f; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <button class="redirect-button" onclick="window.location.href='index.html'">Go to Index</button>
+
+    <ul id="wrap">
+        <li class="flip-wrap">
+            <div class="flip">
+                <div class="front">1</div>
+                <div class="back back1"></div>
+            </div>
+        </li>
+        <li class="flip-wrap">
+            <div class="flip">
+                <div class="front">2</div>
+                <div class="back back2"></div>
+            </div>
+        </li>
+        <li class="flip-wrap">
+            <div class="flip">
+                <div class="front">3</div>
+                <div class="back back3"></div>
+            </div>
+        </li>
+        <li class="flip-wrap">
+            <div class="flip">
+                <div class="front">4</div>
+                <div class="back back4"></div>
+            </div>
+        </li>
+    </ul>
+
+</body>
+</html>

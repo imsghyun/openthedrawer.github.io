@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOG</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #bd7c9f;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            border: 10px solid #f9c8d4; 
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        #imageContainer {
+            width: 400px;
+            height: 400px;
+            background-color: #ffeeef;
+            border: 6px solid #f9c8d4;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px auto;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        #img-black {
+            display: block;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: 2px solid #f497a3;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+            text-transform: uppercase;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            flex: 1 1 calc(33.333% - 20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button .circle {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(195, 195, 195);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .redirect-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background-color: #f5f5f5;
+            border: 2px solid #6b4f2b;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'Georgia', serif;
+            color: #6b4f2b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .redirect-button:hover {
+            background-color: #6b4f2b;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .dog-house {
+            position: absolute;
+            top: -110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 200px;
+            background: #f9e2e8;
+            clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .dog-door {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 90px;
+            background-color: #a45a6a;
+            border-radius: 10px 10px 0 0;
+            box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.1);
+        }
+  
+    </style>
+</head>
+<body>
+    <button class="redirect-button" onclick="window.location.href='index.html'">Go to Index</button>
+    <div class="container">
+  
+        <div class="dog-house">
+            <div class="dog-door"></div>
+        </div>
+  
+
+        <div id="imageContainer">
+            <img id="img-black" src="img/검정.png" alt="검정 강아지">
+            <img id="img-brown" src="img/갈색.png" alt="갈색 강아지">
+            <img id="img-white" src="img/흰색.png" alt="흰색 강아지">
+        </div>
+
+        <div class="button-group">
+            <button id="btn-black" data-bgcolor="#f9c8d4" data-bordercolor="#f9c8d4" data-image="img-black" style="background-color: #000000;">
+                <div class="circle"></div>
+            </button>
+            <button id="btn-brown" data-bgcolor="#e0d7b5" data-bordercolor="#e0d7b5" data-image="img-brown" style="background-color: #6a4f32;">
+                <div class="circle"></div>
+            </button>
+            <button id="btn-white" data-bgcolor="#ffffff" data-bordercolor="#f1f1f1" data-image="img-white" style="background-color: #ffffff;">
+                <div class="circle"></div>
+            </button>
+
+            <button id="btn-house-black" data-bgcolor="#f1e0e0" data-bordercolor="#e0b5b5" style="background-color: #000000;"></button>
+            <button id="btn-house-brown" data-bgcolor="#e6d0b9" data-bordercolor="#d6bfa7"style="background-color: #6a4f32;"></button>
+            <button id="btn-house-white" data-bgcolor="#f9f9f9" data-bordercolor="#d1d1d1" style="background-color: #ffffff;"></button>
+        </div>
+    </div>
+
+    <script>
+        const btnBlack = document.getElementById('btn-black');
+        const btnBrown = document.getElementById('btn-brown');
+        const btnWhite = document.getElementById('btn-white');
+        const btnHouseBlack = document.getElementById('btn-house-black');
+        const btnHouseBrown = document.getElementById('btn-house-brown');
+        const btnHouseWhite = document.getElementById('btn-house-white');
+        const imgBlack = document.getElementById('img-black');
+        const imgBrown = document.getElementById('img-brown');
+        const imgWhite = document.getElementById('img-white');
+        const imageContainer = document.getElementById('imageContainer');
+        const dogHouse = document.querySelector('.dog-house');
+        const container = document.querySelector('.container');
+
+        function showImage(targetImage) {
+            imgBlack.style.display = 'none';
+            imgBrown.style.display = 'none';
+            imgWhite.style.display = 'none';
+            targetImage.style.display = 'block';
+        }
+
+        function changeBackgroundColor(color) {
+            imageContainer.style.backgroundColor = color;
+        }
+
+        function changeHouseBackgroundAndBorder(bgColor, borderColor) {
+            dogHouse.style.backgroundColor = bgColor;
+            dogHouse.style.borderColor = borderColor;
+            container.style.borderColor = borderColor; 
+        }
+
+        btnBlack.addEventListener('click', () => {
+            showImage(imgBlack);
+            changeBackgroundColor(btnBlack.dataset.bgcolor);
+        });
+
+        btnBrown.addEventListener('click', () => {
+            showImage(imgBrown);
+            changeBackgroundColor(btnBrown.dataset.bgcolor);
+        });
+
+        btnWhite.addEventListener('click', () => {
+            showImage(imgWhite);
+            changeBackgroundColor(btnWhite.dataset.bgcolor);
+        });
+
+        btnHouseBlack.addEventListener('click', () => {
+            changeHouseBackgroundAndBorder(btnHouseBlack.dataset.bgcolor, btnHouseBlack.dataset.bordercolor);
+        });
+
+        btnHouseBrown.addEventListener('click', () => {
+            changeHouseBackgroundAndBorder(btnHouseBrown.dataset.bgcolor, btnHouseBrown.dataset.bordercolor);
+        });
+
+        btnHouseWhite.addEventListener('click', () => {
+            changeHouseBackgroundAndBorder(btnHouseWhite.dataset.bgcolor, btnHouseWhite.dataset.bordercolor);
+        });
+    </script>
+</body>
+</html>
